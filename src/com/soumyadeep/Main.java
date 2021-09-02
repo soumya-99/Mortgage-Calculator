@@ -14,6 +14,11 @@ public class Main {
 
         double mortgage = calculateMortgage(principle, yearlyInterestRate, years);
         System.out.println("Mortgage: " + NumberFormat.getCurrencyInstance(new Locale("en", "IN")).format(mortgage));
+
+        System.out.println("---------Mortgage Printer---------");
+        for (short month = 1; month <= years * 12; month++) {
+            System.out.println(NumberFormat.getCurrencyInstance(new Locale("en", "IN")).format(calculateBalancePerMonth(principle, yearlyInterestRate, years, month)) + " in month " + month);
+        }
     }
 
     public static double readNumber(String prompt, double min, double max) {
@@ -33,4 +38,13 @@ public class Main {
         float monthlyInterestRate = (yearlyInterestRate / 100) / 12;
         return principle * (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, totalMonths)) / (Math.pow((1 + monthlyInterestRate), totalMonths) - 1);
     }
+
+    public static double calculateBalancePerMonth(int principle, float yearlyInterestRate, byte years, short numberOfPaymentsMade) {
+        int totalMonths = years * 12;
+        float monthlyInterestRate = (yearlyInterestRate / 100) / 12;
+
+        return principle * (Math.pow(1 + monthlyInterestRate, totalMonths) - Math.pow(1 + monthlyInterestRate,
+                numberOfPaymentsMade)) / (Math.pow(1 + monthlyInterestRate, totalMonths) - 1);
+    }
 }
+
