@@ -9,7 +9,7 @@ public class Main {
         System.out.println("--------Mortgage Calculator--------");
 
         int principle = (int) readNumber("Principle (1K - 1M): ", 1000, 1_000_000);
-        float yearlyInterestRate = (float) readNumber("Interest (1 - 30): ", 1, 30);
+        float yearlyInterestRate = (float) readNumber("Interest (1% - 30%): ", 1, 30);
         byte years = (byte) readNumber("No of Years (1 - 80): ", 1, 80);
 
         double mortgage = calculateMortgage(principle, yearlyInterestRate, years);
